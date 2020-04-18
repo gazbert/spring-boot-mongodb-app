@@ -12,7 +12,7 @@ See log4j2 guide for more options: http://logging.apache.org/log4j/2.x/manual/ap
 -->
 <Configuration status="warn" name="spring-boot-mongodb-app" packages="">
   <Appenders>
-    <RollingFile name="SpringBootRabbitApp_RollingFile" fileName="./logs/app.log"
+    <RollingFile name="SpringBootMongoDbApp_RollingFile" fileName="./logs/app.log"
       filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
       <PatternLayout>
         <Pattern>%-4r [%t] %d %-5p %c{1} %M() - %m%n</Pattern>
