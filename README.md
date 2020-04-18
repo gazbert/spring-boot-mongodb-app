@@ -26,7 +26,7 @@ Launch the [Mongo Shell](https://docs.mongodb.com/manual/reference/mongo-shell/)
 mongo
 ```
 
-Check it's working ok and get a list of dbs:
+Check it's working ok - list the dbs:
 ```bash
 show dbs
 ```
