@@ -3,7 +3,6 @@ package com.gazbert.mongosample;
 import com.gazbert.mongosample.model.ContactAddress;
 import com.gazbert.mongosample.model.Registration;
 import com.gazbert.mongosample.model.User;
-import com.gazbert.mongosample.repository.CustomRegistrationRepository;
 import com.gazbert.mongosample.repository.RegistrationRepository;
 import com.gazbert.mongosample.repository.UserRepository;
 import org.slf4j.Logger;
@@ -52,7 +51,9 @@ public class Application implements CommandLineRunner {
     userRepository.deleteAll();
     registrationRepository.deleteAll();
 
-    // Create a couple of users
+    // ------------------------------------------------------------------------
+    // Create a couple of Users
+    // ------------------------------------------------------------------------
     final User alice = new User();
     alice.setFirstName("Alice");
     alice.setLastName("Wonderland");
@@ -69,17 +70,23 @@ public class Application implements CommandLineRunner {
     bob.setAccountEnabled(true);
     bob.setSipAor("sip:bob@constructor.net");
 
+    // ------------------------------------------------------------------------
     // Save them to MongoDB
+    // ------------------------------------------------------------------------
     userRepository.save(alice);
     userRepository.save(bob);
 
+    // ------------------------------------------------------------------------
     // Fetch all Users
+    // ------------------------------------------------------------------------
     LOG.info("Users found using findAll():");
     for (User user : userRepository.findAll()) {
       LOG.info(user.toString());
     }
 
+    // ------------------------------------------------------------------------
     // Fetch individual Users
+    // ------------------------------------------------------------------------
     LOG.info("");
     LOG.info("User found with findByFirstName('Alice'):");
     for (User user : userRepository.findByFirstName("Alice")) {
@@ -100,34 +107,46 @@ public class Application implements CommandLineRunner {
     LOG.info("User found with findBySipAor('sip:bob@constructor.net'):");
     LOG.info(userRepository.findBySipAor("sip:bob@constructor.net").toString());
 
+    // ------------------------------------------------------------------------
     // Create a SIP registration for Alice
+    // ------------------------------------------------------------------------
     final Registration aliceRegistration = new Registration();
     final ContactAddress aliceContactAddress = new ContactAddress();
     aliceContactAddress.setAddress("sip:alice@192.168.33.111");
     aliceContactAddress.setExpires(360);
     aliceRegistration.setAddressOfRecord(alice.getSipAor());
     aliceRegistration.addContactAddress(aliceContactAddress);
+    aliceRegistration.setCurrentCacheId("cache-123");
 
+    // ------------------------------------------------------------------------
     // Create a SIP registration for Bob
+    // ------------------------------------------------------------------------
     final Registration bobRegistration = new Registration();
     final ContactAddress bobContactAddress = new ContactAddress();
     bobContactAddress.setAddress("sip:bob@192.168.33.333");
     bobContactAddress.setExpires(360);
     bobRegistration.setAddressOfRecord(bob.getSipAor());
     bobRegistration.addContactAddress(bobContactAddress);
+    bobRegistration.setCurrentCacheId("cache-456");
 
+    // ------------------------------------------------------------------------
     // Save them to MongoDB
+    // ------------------------------------------------------------------------
     registrationRepository.save(aliceRegistration);
     registrationRepository.save(bobRegistration);
 
+    // ------------------------------------------------------------------------
     // Fetch all Registrations
+    // ------------------------------------------------------------------------
     LOG.info("");
     LOG.info("Registrations found using findAll():");
     for (Registration registration : registrationRepository.findAll()) {
       LOG.info(registration.toString());
     }
 
+    // ------------------------------------------------------------------------
     // Fetch individual Registrations
+    // ------------------------------------------------------------------------
     LOG.info("");
     LOG.info("Registration found with findByAddressOfRecord('sip:alice@wonderland.net'):");
     LOG.info(registrationRepository.findByAddressOfRecord("sip:alice@wonderland.net").toString());

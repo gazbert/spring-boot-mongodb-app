@@ -12,6 +12,10 @@ public class ContactAddress {
   private String address;
   private int expires;
 
+  /**
+   * Returns the Registration expires time in seconds.
+   * @return the expires time.
+   */
   public int getExpires() {
     return expires;
   }

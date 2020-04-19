@@ -2,12 +2,16 @@ package com.gazbert.mongosample.model;
 
 import com.google.common.base.MoreObjects;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
  * Represents a User entity.
  *
  * @author gazbert
  */
+@Document
 public class User {
 
   /**
@@ -16,12 +20,34 @@ public class User {
    */
   @Id private String id;
 
+  /** Indexed this attribute as it will be looked up lots! */
+  @Indexed private String sipAor;
+
   private String username;
   private String firstName;
   private String lastName;
+
+  /** Shows how to override the default field name in the database */
+  @Field("emailAddress")
   private String email;
-  private String sipAor;
+
   private boolean isAccountEnabled;
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public String getSipAor() {
+    return sipAor;
+  }
+
+  public void setSipAor(String sipAor) {
+    this.sipAor = sipAor;
+  }
 
   public String getUsername() {
     return username;
@@ -55,14 +81,6 @@ public class User {
     this.email = email;
   }
 
-  public String getSipAor() {
-    return sipAor;
-  }
-
-  public void setSipAor(String sipAor) {
-    this.sipAor = sipAor;
-  }
-
   public boolean isAccountEnabled() {
     return isAccountEnabled;
   }
@@ -71,23 +89,15 @@ public class User {
     isAccountEnabled = accountEnabled;
   }
 
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
         .add("id", id)
+        .add("sipAor", sipAor)
         .add("username", username)
         .add("firstName", firstName)
         .add("lastName", lastName)
         .add("email", email)
-        .add("sipAor", sipAor)
         .add("isAccountEnabled", isAccountEnabled)
         .toString();
   }

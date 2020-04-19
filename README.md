@@ -13,7 +13,8 @@ The fastest way to get up and running is to use the [Docker image](https://hub.d
 
 ```bash
 docker pull mongo;
-docker run -d -p 27017-27019:27017-27019 --name mongodb mongo
+docker run -d -p 27017-27019:27017-27019 --name my-mongodb mongo:latest
+
 ```
 
 Once it's up and running, you can attach to it to run MongoDB commands: 
@@ -85,9 +86,19 @@ The unit test report locations are:
 The configuration is held in the [./config/application.properties](./config/application.properties) 
 file.
 
+You'll need to change the MongoDB connection details of you are running the database on a different
+machine:
+
 ```properties
-todo.prop=willBeDone
+spring.data.mongodb.host=localhost
+spring.data.mongodb.port=27017
+spring.data.mongodb.database=sample-app
 ```
+
+MongoDB authentication is not enabled for this demo - see the
+[MongoDB Manual](https://docs.mongodb.com/manual/tutorial/enable-authentication/) and the
+[Spring Data Docs](https://docs.spring.io/spring-data/mongodb/docs/current/reference/html/#mongo.mongo-db-factory-java)
+if you need to enable it.
 
 ## User Guide
 
@@ -102,11 +113,31 @@ From the the app from the project root folder using:
 * Gradle - `./gradlew bootRun`
 * Maven - `./mvnw spring-boot:run`
 
+Once you've run the app, you can take a look at the collections in the database using the Mongo Shell.
+
+To see all the Users and Registrations:
+```
+show dbs
+use sample-app
+db.user.find()
+db.registration.find()
+```
+
+Take a look at the [Mongo Shell Manual](https://docs.mongodb.com/manual/crud/) for more commands.
+
 ### Interesting things to note
 
+#### The MongoTemplate
 Spring Data MongoDB uses the MongoTemplate to execute the queries behind your find* methods.
 You can use the template yourself for more complex queries, but this guide does not cover that.
 (see the Spring Data MongoDB Reference Guide)
+
+#### Indexing
+To see the indexes on the collections:
+```
+db.user.getIndexes()
+db.registration.getIndexes()
+```
 
 ## Logging
 Logging for the app is provided by [log4j](http://logging.apache.org/log4j). 
