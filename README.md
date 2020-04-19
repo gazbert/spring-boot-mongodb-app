@@ -125,7 +125,7 @@ db.registration.find()
 
 Take a look at the [Mongo Shell Manual](https://docs.mongodb.com/manual/crud/) for more commands.
 
-### Interesting things to note
+### The Details
 
 #### The MongoTemplate
 Spring Data MongoDB uses the MongoTemplate to execute the queries behind your find* methods.
