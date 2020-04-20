@@ -83,7 +83,7 @@ public class UserService {
     // ------------------------------------------------------------------------
     LOG.info("Users found using findAll():");
     for (User user : userRepository.findAll()) {
-      LOG.info(user.toString());
+      LOG.info(String.valueOf(user));
     }
 
     // ------------------------------------------------------------------------
@@ -92,21 +92,21 @@ public class UserService {
     LOG.info("");
     LOG.info("User found with findByFirstName('" + ALICE_FIRSTNAME + "'):");
     for (User user : userRepository.findByFirstName(ALICE_FIRSTNAME)) {
-      LOG.info(user.toString());
+      LOG.info(String.valueOf(user));
     }
 
     LOG.info("");
     LOG.info("User found with findByLastName('" + BOB_ACCOUNT_ENABLED + "'):");
     for (User user : userRepository.findByLastName(BOB_LASTNAME)) {
-      LOG.info(user.toString());
+      LOG.info(String.valueOf(user));
     }
 
     LOG.info("");
     LOG.info("User found with findByUsername('" + ALICE_USERNAME + "'):");
-    LOG.info(userRepository.findByUsername("alice123").toString());
+    LOG.info(String.valueOf(userRepository.findByUsername("alice123")));
 
     LOG.info("");
     LOG.info("User found with findBySipAor('" + BOB_AOR + "'):");
-    LOG.info(userRepository.findBySipAor("sip:bob@constructor.net").toString());
+    LOG.info(String.valueOf(userRepository.findBySipAor("sip:bob@constructor.net")));
   }
 }
