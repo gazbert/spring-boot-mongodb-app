@@ -80,6 +80,9 @@ Unit tests are run as part of both Gradle and Maven builds.
 , and [Flapdoodle's](https://github.com/flapdoodle-oss/de.flapdoodle.embed.mongo) embedded MongoDB
 is used to unit test the code.
 
+You'll need to stop any other instance of MongoDB that you have running, otherwise the tests will 
+fail to due to port clashes.
+
 The unit test report locations are:
 * Gradle - `build/reports/tests/test/index.html`
 * Maven - `./target/surefire-reports`
