@@ -98,14 +98,14 @@ public class RegistrationService {
     // ------------------------------------------------------------------------
     LOG.info("");
     LOG.info("Registration found with findByAddressOfRecord('" + ALICE_AOR + "'):");
-    LOG.info(String.valueOf(registrationRepository.findByAddressOfRecord(ALICE_AOR)));
+    LOG.info("{}", registrationRepository.findByAddressOfRecord(ALICE_AOR));
 
     LOG.info("");
     LOG.info("Registration found with findByAddressOfRecord('" + BOB_AOR + "'):");
-    LOG.info(String.valueOf(registrationRepository.findByAddressOfRecord(BOB_AOR)));
+    LOG.info("{}", registrationRepository.findByAddressOfRecord(BOB_AOR));
 
     LOG.info("");
     LOG.info("Registration found with findByContactAddress('" + ALICE_CONTACT_ADDRESS + "'):");
-    LOG.info(String.valueOf(registrationRepository.findByContactAddress(ALICE_CONTACT_ADDRESS)));
+    LOG.info("{}", registrationRepository.findByContactAddress(ALICE_CONTACT_ADDRESS));
   }
 }
