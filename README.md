@@ -1,5 +1,8 @@
 # Spring Boot MongoDB App
 
+[![Build Status](https://travis-ci.org/gazbert/spring-boot-mongodb-app.svg?branch=master)](https://travis-ci.org/gazbert/spring-boot-mongodb-app)
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=gazbert_spring-boot-mongodb-app&metric=alert_status)](https://sonarcloud.io/dashboard?id=gazbert_spring-boot-mongodb-app)
+
 ## What is this?
 A [Spring Boot](http://projects.spring.io/spring-boot/) sample app that integrates 
 [MongoDB](https://www.mongodb.com/) using [Spring Data MongoDB](https://spring.io/projects/spring-data-mongodb).
