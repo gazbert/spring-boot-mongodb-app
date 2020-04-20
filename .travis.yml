@@ -1,0 +1,15 @@
+language: java
+jdk:
+  - openjdk11
+
+install: true
+
+script:
+  - ./mvnw clean install org.jacoco:jacoco-maven-plugin:prepare-agent org.jacoco:jacoco-maven-plugin:report sonar:sonar -Dmaven.javadoc.skip=true -Dsonar.projectKey=gazbert_spring-boot-mongodb-app -Dsonar.organization=gazbert-github
+
+addons:
+  sonarcloud:
+    organization: "gazbert-github"
+    token:
+      secure: "Viaqp06+SHeVCIlmiJNw0yPPuumPSEOReKP1HunV8PEPghstwIoh8BuOglmtUEJ6shlFH3anpdylu0MoGCQv/hXwRVktKu17YJFMOJVTXorUuW1ceo55GIa4O7EwY+uxHiAlP0Xzw3LgSy1/22UkTCtNIbLQs+b0xCnL/wetXmYDv9+4n9WElv13h2mvXBCivpFhQDJxhjQt2xDSAy/nfvCFgOLCXN3uf9tEryJnydyHtgKzkTJdPx6U/JdgOw8buHw8NdK9qHLBD+M7XeWAqfJmEc1B3jsPVHqYOtmKMiSUulQCWDPupi7od91S+7VT3r5gKAojgYuzwn0PueQmJQNPm1VW0ojEHYNZnTCLXiUOTeJZ0YV9IUEmYTpJUP6v9n62NWh0AL5yju6eQ/cqIWfLLtonZaBNH9Xca4aEg/xmNb8AjHn0xzghLXc+V5PCUDGqNoMQpvUJ481VpZ22zO4oVN+/VYZD4exRp4zpMvlZ75XOu/YAFJ5ZMDsPBqt20nCSSMEqZpJk2sCSTmW/o8UTnIDkWFOp9xtECSlu3DUIEOY3XRYxOW1ed++AThuXKe5XjJf9vaiaqYxuZ4u2WYtcm8WoxDl3D2ZDeWDBqF4AOIkduVI8dL5THgKf9Pb63FZ9EXuRRsgFSiS9D6oNrun4LB4F4+ZxU4jljui765g="
+
