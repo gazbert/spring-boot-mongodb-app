@@ -104,12 +104,9 @@ if you need to enable it.
 
 ## User Guide
 
-You can view the exchanges, queues, and messages in the Rabbit UI: 
-[http://localhost:15672](http://localhost:15672)
-
 ### Running the App
-The [Application](./src/main/java/com/gazbert/mongosample/Application.java) simply creates some
-Users and dummy [SIP](https://en.wikipedia.org/wiki/Session_Initiation_Protocol) Registrations and 
+The [`Application`](./src/main/java/com/gazbert/mongosample/Application.java) simply creates some
+Users and dummy [SIP](https://en.wikipedia.org/wiki/Session_Initiation_Protocol) Registrations, and 
 then fetches them. Check out the [app.log](#logging) file.
 
 From the the app from the project root folder using:
@@ -135,13 +132,13 @@ The [Mongo Shell Manual](https://docs.mongodb.com/manual/crud/) lists other usef
 #### The MongoTemplate
 Spring Data MongoDB uses the MongoTemplate to execute the queries behind the generated `find*` methods.
 You can use the template directly for more complex queries - see the
-[CustomRegistrationRepositoryImpl](./src/main/java/com/gazbert/mongosample/repository/CustomRegistrationRepositoryImpl.java).
+[`CustomRegistrationRepositoryImpl`](./src/main/java/com/gazbert/mongosample/repository/CustomRegistrationRepositoryImpl.java).
 
 #### Indexes
 You can use the
-[@Indexed](https://docs.spring.io/spring-data/mongodb/docs/current/api/org/springframework/data/mongodb/core/index/Indexed.html) 
+[`@Indexed`](https://docs.spring.io/spring-data/mongodb/docs/current/api/org/springframework/data/mongodb/core/index/Indexed.html) 
 annotation on domain objects like 
-[Registration](./src/main/java/com/gazbert/mongosample/model/Registration.java)
+[`Registration`](./src/main/java/com/gazbert/mongosample/model/Registration.java) class.
  
 To see the indexes on the collections:
 ```
@@ -169,5 +166,6 @@ You are welcome to take on new features or fix bugs! See [here](CONTRIBUTING.md)
 ## References
 1. [MongoDB Manual](https://docs.mongodb.com/manual/reference/).
 1. [Spring Data MongoDB Reference Docs](https://docs.spring.io/spring-data/mongodb/docs/current/reference/html/#reference).
+1. [MongoDB Docker image](https://hub.docker.com/_/mongo).
 
 
