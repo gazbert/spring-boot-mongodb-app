@@ -4,9 +4,10 @@
 A [Spring Boot](http://projects.spring.io/spring-boot/) sample app that integrates 
 [MongoDB](https://www.mongodb.com/) using [Spring Data MongoDB](https://spring.io/projects/spring-data-mongodb).
 
-MongoDB is a document database, which means it stores data in JSON-like documents.
-
 It could be used as boilerplate for developing microservices that require a persistent document store.
+
+MongoDB is a NoSQL document database. It stores data in JSON-like documents. Spring Data provides
+a model and repository layer for integrating with MongoDB.
 
 ## Install MongoDB
 The fastest way to get up and running is to use the [Docker image](https://hub.docker.com/_/mongo):
@@ -75,8 +76,9 @@ The bug report locations are:
 ### Tests
 Unit tests are run as part of both Gradle and Maven builds.
 
-[JUnit 4](https://junit.org/junit4/) and [Mockito](https://site.mockito.org/) is used to unit test
-the code.
+[JUnit](https://junit.org/junit4/), [Spring Boot Test](https://docs.spring.io/spring-boot/docs/2.1.5.RELEASE/reference/html/boot-features-testing.html)
+, and [Flapdoodle's](https://github.com/flapdoodle-oss/de.flapdoodle.embed.mongo) embedded MongoDB
+is used to unit test the code.
 
 The unit test report locations are:
 * Gradle - `build/reports/tests/test/index.html`
@@ -106,7 +108,9 @@ You can view the exchanges, queues, and messages in the Rabbit UI:
 [http://localhost:15672](http://localhost:15672)
 
 ### Running the App
-The [Application](./src/main/java/com/gazbert/mongosample/Application.java) app does...
+The [Application](./src/main/java/com/gazbert/mongosample/Application.java) simply creates some
+Users and dummy [SIP](https://en.wikipedia.org/wiki/Session_Initiation_Protocol) Registrations and 
+then fetches them. Check out the [app.log](#logging) file.
 
 From the the app from the project root folder using:
 
@@ -116,6 +120,7 @@ From the the app from the project root folder using:
 Once you've run the app, you can take a look at the collections in the database using the Mongo Shell.
 
 To see all the Users and Registrations:
+
 ```
 show dbs
 use sample-app
@@ -123,16 +128,21 @@ db.user.find()
 db.registration.find()
 ```
 
-Take a look at the [Mongo Shell Manual](https://docs.mongodb.com/manual/crud/) for more commands.
+The [Mongo Shell Manual](https://docs.mongodb.com/manual/crud/) lists other useful commands.
 
-### Other noteworthy stuff
+### Noteworthy stuff
 
 #### The MongoTemplate
-Spring Data MongoDB uses the MongoTemplate to execute the queries behind your find* methods.
-You can use the template yourself for more complex queries, but this guide does not cover that.
-(see the Spring Data MongoDB Reference Guide)
+Spring Data MongoDB uses the MongoTemplate to execute the queries behind the generated `find*` methods.
+You can use the template directly for more complex queries - see the
+[CustomRegistrationRepositoryImpl](./src/main/java/com/gazbert/mongosample/repository/CustomRegistrationRepositoryImpl.java).
 
 #### Indexes
+You can use the
+[@Indexed](https://docs.spring.io/spring-data/mongodb/docs/current/api/org/springframework/data/mongodb/core/index/Indexed.html) 
+annotation on domain objects like 
+[Registration](./src/main/java/com/gazbert/mongosample/model/Registration.java)
+ 
 To see the indexes on the collections:
 ```
 db.user.getIndexes()

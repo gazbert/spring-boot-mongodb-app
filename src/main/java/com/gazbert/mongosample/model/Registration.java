@@ -1,8 +1,8 @@
 package com.gazbert.mongosample.model;
 
 import com.google.common.base.MoreObjects;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -18,16 +18,16 @@ public class Registration {
 
   @Id private String id;
 
-  /** Indexed this attribute as it will be looked up lots! */
+  /** Indexed this attribute as it will be looked up lots. */
   @Indexed private String addressOfRecord;
 
-  /** Shows how not to store some data in the database */
+  /** Shows how not to store some data in the database. */
   @Transient private String currentCacheId;
 
-  private Set<ContactAddress> contactAddresses;
+  private List<ContactAddress> contactAddresses;
 
   public Registration() {
-    contactAddresses = new HashSet<>();
+    contactAddresses = new ArrayList<>();
   }
 
   public String getId() {
@@ -46,7 +46,7 @@ public class Registration {
     this.addressOfRecord = addressOfRecord;
   }
 
-  public Set<ContactAddress> getContactAddresses() {
+  public List<ContactAddress> getContactAddresses() {
     return contactAddresses;
   }
 

@@ -20,14 +20,14 @@ public class User {
    */
   @Id private String id;
 
-  /** Indexed this attribute as it will be looked up lots! */
+  /** Indexed this attribute as it will be looked up lots. */
   @Indexed private String sipAor;
 
   private String username;
   private String firstName;
   private String lastName;
 
-  /** Shows how to override the default field name in the database */
+  /** Shows how to override the default field name in the database. */
   @Field("emailAddress")
   private String email;
 

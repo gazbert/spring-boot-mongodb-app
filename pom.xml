@@ -145,6 +145,13 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
+      <version>${spring-boot-starter.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>de.flapdoodle.embed</groupId>
+      <artifactId>de.flapdoodle.embed.mongo</artifactId>
+      <version>2.2.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -184,54 +191,54 @@
           </execution>
         </executions>
       </plugin>
-<!--      <plugin>-->
-<!--        <groupId>org.jacoco</groupId>-->
-<!--        <artifactId>jacoco-maven-plugin</artifactId>-->
-<!--        <version>0.8.5</version>-->
-<!--        <configuration>-->
-<!--          <excludes>-->
-<!--            <exclude>**/some.class</exclude> &lt;!&ndash; ignore stubbed methods &ndash;&gt;-->
-<!--          </excludes>-->
-<!--        </configuration>-->
-<!--        <executions>-->
-<!--          <execution>-->
-<!--            <goals>-->
-<!--              <goal>prepare-agent</goal>-->
-<!--            </goals>-->
-<!--          </execution>-->
-<!--          <execution>-->
-<!--            <id>jacoco-report</id>-->
-<!--            <phase>test</phase>-->
-<!--            <goals>-->
-<!--              <goal>report</goal>-->
-<!--            </goals>-->
-<!--            &lt;!&ndash; Override report location. Default is: target/jacoco/site/* &ndash;&gt;-->
-<!--            <configuration>-->
-<!--              <outputDirectory>target/jacoco-report</outputDirectory>-->
-<!--            </configuration>-->
-<!--          </execution>-->
-<!--          <execution>-->
-<!--            <id>jacoco-check</id>-->
-<!--            <goals>-->
-<!--              <goal>check</goal>-->
-<!--            </goals>-->
-<!--            <configuration>-->
-<!--              <rules>-->
-<!--                <rule>-->
-<!--                  <element>CLASS</element>-->
-<!--                  <limits>-->
-<!--                    <limit>-->
-<!--                      <counter>LINE</counter>-->
-<!--                      <value>COVEREDRATIO</value>-->
-<!--                      <minimum>0.8</minimum>-->
-<!--                    </limit>-->
-<!--                  </limits>-->
-<!--                </rule>-->
-<!--              </rules>-->
-<!--            </configuration>-->
-<!--          </execution>-->
-<!--        </executions>-->
-<!--      </plugin>-->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.5</version>
+        <configuration>
+          <excludes>
+            <exclude>**/some.class</exclude> <!-- ignore stubbed methods -->
+          </excludes>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>jacoco-report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <!-- Override report location. Default is: target/jacoco/site/* -->
+            <configuration>
+              <outputDirectory>target/jacoco-report</outputDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>jacoco-check</id>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <rule>
+                  <element>CLASS</element>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.8</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
