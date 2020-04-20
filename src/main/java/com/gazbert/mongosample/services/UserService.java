@@ -103,10 +103,10 @@ public class UserService {
 
     LOG.info("");
     LOG.info("User found with findByUsername('" + ALICE_USERNAME + "'):");
-    LOG.info(String.valueOf(userRepository.findByUsername("alice123")));
+    LOG.info(String.valueOf(userRepository.findByUsername(ALICE_USERNAME)));
 
     LOG.info("");
     LOG.info("User found with findBySipAor('" + BOB_AOR + "'):");
-    LOG.info(String.valueOf(userRepository.findBySipAor("sip:bob@constructor.net")));
+    LOG.info(String.valueOf(userRepository.findBySipAor(BOB_AOR)));
   }
 }
