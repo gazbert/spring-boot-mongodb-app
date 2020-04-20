@@ -45,5 +45,7 @@ public class Application implements CommandLineRunner {
 
     registrationService.createRegistrations();
     registrationService.fetchSomeRegistrations();
+    registrationService.updateRegistration();
+    registrationService.removeRegistration();
   }
 }

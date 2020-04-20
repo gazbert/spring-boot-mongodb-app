@@ -6,6 +6,12 @@ import static com.gazbert.mongosample.services.RegistrationService.ALICE_CONTACT
 import static com.gazbert.mongosample.services.RegistrationService.BOB_AOR;
 import static com.gazbert.mongosample.services.RegistrationService.BOB_CONTACT_ADDRESS;
 import static com.gazbert.mongosample.services.RegistrationService.BOB_CONTACT_ADDRESS_EXPIRES;
+import static com.gazbert.mongosample.services.RegistrationService.CAROL_AOR;
+import static com.gazbert.mongosample.services.RegistrationService.CAROL_CONTACT_ADDRESS_1;
+import static com.gazbert.mongosample.services.RegistrationService.CAROL_CONTACT_ADDRESS_2;
+import static com.gazbert.mongosample.services.RegistrationService.CAROL_CONTACT_ADDRESS_EXPIRES_1;
+import static com.gazbert.mongosample.services.RegistrationService.CAROL_CONTACT_ADDRESS_EXPIRES_2;
+import static com.gazbert.mongosample.services.RegistrationService.DAVE_AOR;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gazbert.mongosample.model.Registration;
@@ -35,7 +41,7 @@ public class RegistrationRepositoryTests {
   public void testRegistrationsCreatedSuccessfully() {
 
     final List<Registration> allRegistrations = registrationRepository.findAll();
-    assertThat(allRegistrations.size()).isEqualTo(2);
+    assertThat(allRegistrations.size()).isEqualTo(3); // Alice, Bob, and Carol... but no Dave.
 
     final Registration aliceRegistration = registrationRepository.findByAddressOfRecord(ALICE_AOR);
     assertThat(aliceRegistration.getAddressOfRecord()).isEqualTo(ALICE_AOR);
@@ -56,5 +62,35 @@ public class RegistrationRepositoryTests {
         .isEqualTo(BOB_CONTACT_ADDRESS);
     assertThat(bobRegistration.getContactAddresses().get(0).getExpires())
         .isEqualTo(BOB_CONTACT_ADDRESS_EXPIRES);
+
+    final Registration carolRegistration = registrationRepository.findByAddressOfRecord(CAROL_AOR);
+    assertThat(carolRegistration.getAddressOfRecord()).isEqualTo(CAROL_AOR);
+  }
+
+  @Test
+  public void testRegistrationUpdatedSuccessfully() {
+    final Registration carolRegistration = registrationRepository.findByAddressOfRecord(CAROL_AOR);
+    assertThat(carolRegistration.getAddressOfRecord()).isEqualTo(CAROL_AOR);
+
+    // Null because it's transient
+    assertThat(carolRegistration.getCurrentCacheId()).isEqualTo(null);
+
+    assertThat(carolRegistration.getContactAddresses().size()).isEqualTo(2);
+
+    assertThat(carolRegistration.getContactAddresses().get(0).getAddress())
+        .isEqualTo(CAROL_CONTACT_ADDRESS_1);
+    assertThat(carolRegistration.getContactAddresses().get(0).getExpires())
+        .isEqualTo(CAROL_CONTACT_ADDRESS_EXPIRES_1);
+
+    assertThat(carolRegistration.getContactAddresses().get(1).getAddress())
+        .isEqualTo(CAROL_CONTACT_ADDRESS_2);
+    assertThat(carolRegistration.getContactAddresses().get(1).getExpires())
+        .isEqualTo(CAROL_CONTACT_ADDRESS_EXPIRES_2);
+  }
+
+  @Test
+  public void testRegistrationRemovedSuccessfully() {
+    final Registration daveRegistration = registrationRepository.findByAddressOfRecord(DAVE_AOR);
+    assertThat(daveRegistration).isNull();
   }
 }

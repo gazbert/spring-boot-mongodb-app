@@ -16,6 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gazbert.mongosample.model.User;
 import java.util.List;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +61,15 @@ public class UserRepositoryTests {
     assertThat(bob.getEmail()).isEqualTo(BOB_EMAIL);
     assertThat(bob.isAccountEnabled()).isEqualTo(BOB_ACCOUNT_ENABLED);
     assertThat(bob.getSipAor()).isEqualTo(BOB_AOR);
+  }
+
+  @Ignore("Not implemented yet")
+  @Test
+  public void testUserUpdatedSuccessfully() {
+  }
+
+  @Ignore("Not implemented yet")
+  @Test
+  public void testUserRemovedSuccessfully() {
   }
 }
