@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RegistrationService {
 
-  private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
+  private static final Logger LOG = LoggerFactory.getLogger(RegistrationService.class);
 
   public static final String ALICE_AOR = "sip:alice@wonderland.net";
   public static final String ALICE_CONTACT_ADDRESS = "sip:alice@192.168.33.111";
@@ -90,7 +90,7 @@ public class RegistrationService {
     LOG.info("");
     LOG.info("Registrations found using findAll():");
     for (Registration registration : registrationRepository.findAll()) {
-      LOG.info(String.valueOf(registration));
+      LOG.info("{}", registration);
     }
 
     // ------------------------------------------------------------------------
