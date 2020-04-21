@@ -1,7 +1,5 @@
 package com.gazbert.mongosample.services;
 
-import com.gazbert.mongosample.model.ContactAddress;
-import com.gazbert.mongosample.model.Registration;
 import com.gazbert.mongosample.model.User;
 import com.gazbert.mongosample.repository.UserRepository;
 import org.slf4j.Logger;
@@ -44,12 +42,12 @@ public class UserService {
   public static final String CAROL_LASTNAME = "Singer";
   public static final String CAROL_EMAIL = "carol.singer@christmas.net";
 
-  public static final String DAVE_AOR = "sip:dave@seti-aplha-5.net";
-  public static final String DAVE_USERNAME = "dave012";
-  public static final String DAVE_FIRSTNAME = "Dave";
-  public static final String DAVE_LASTNAME = "Badger";
-  public static final String DAVE_EMAIL = "dave.badger@prosephony.net";
-  public static final boolean DAVE_ACCOUNT_ENABLED = true;
+  private static final String DAVE_AOR = "sip:dave@seti-aplha-5.net";
+  private static final String DAVE_USERNAME = "dave012";
+  private static final String DAVE_FIRSTNAME = "Dave";
+  private static final String DAVE_LASTNAME = "Badger";
+  private static final String DAVE_EMAIL = "dave.badger@prosephony.net";
+  private static final boolean DAVE_ACCOUNT_ENABLED = true;
 
   private UserRepository userRepository;
 
