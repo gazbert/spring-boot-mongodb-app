@@ -42,6 +42,8 @@ public class Application implements CommandLineRunner {
   public void run(String... args) {
     userService.createUsers();
     userService.fetchSomeUsers();
+    userService.updateUser();
+    userService.removeUser();
 
     registrationService.createRegistrations();
     registrationService.fetchSomeRegistrations();

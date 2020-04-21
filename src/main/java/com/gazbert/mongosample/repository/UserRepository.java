@@ -30,18 +30,18 @@ public interface UserRepository extends MongoRepository<User, String> {
   List<User> findByLastName(String lastName);
 
   /**
-   * Searches for Users with a given SIP Address of Record (AOR).
-   *
-   * @param sipAor the SIP AOR to search for.
-   * @return a User if found, null otherwise.
-   */
-  User findBySipAor(String sipAor);
-
-  /**
    * Searches for Users with a given Username.
    *
    * @param username the username to search for.
    * @return a User if found, null otherwise.
    */
   User findByUsername(String username);
+
+  /**
+   * Searches for Users with a given SIP Address of Record (AOR).
+   *
+   * @param sipAor the SIP AOR to search for.
+   * @return a User if found, null otherwise.
+   */
+  User findBySipAor(String sipAor);
 }

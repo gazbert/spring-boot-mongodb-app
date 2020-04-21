@@ -1,5 +1,7 @@
 package com.gazbert.mongosample.services;
 
+import com.gazbert.mongosample.model.ContactAddress;
+import com.gazbert.mongosample.model.Registration;
 import com.gazbert.mongosample.model.User;
 import com.gazbert.mongosample.repository.UserRepository;
 import org.slf4j.Logger;
@@ -35,6 +37,19 @@ public class UserService {
   public static final String BOB_LASTNAME = "Dabuilder";
   public static final String BOB_EMAIL = "bob.dabuilder@constructor.net";
   public static final boolean BOB_ACCOUNT_ENABLED = true;
+
+  public static final String CAROL_AOR = "sip:carol@hoth.net";
+  public static final String CAROL_USERNAME = "carol789";
+  public static final String CAROL_FIRSTNAME = "Carol";
+  public static final String CAROL_LASTNAME = "Singer";
+  public static final String CAROL_EMAIL = "carol.singer@christmas.net";
+
+  public static final String DAVE_AOR = "sip:dave@seti-aplha-5.net";
+  public static final String DAVE_USERNAME = "dave012";
+  public static final String DAVE_FIRSTNAME = "Dave";
+  public static final String DAVE_LASTNAME = "Badger";
+  public static final String DAVE_EMAIL = "dave.badger@prosephony.net";
+  public static final boolean DAVE_ACCOUNT_ENABLED = true;
 
   private UserRepository userRepository;
 
@@ -108,5 +123,53 @@ public class UserService {
     LOG.info("");
     LOG.info("User found with findBySipAor('" + BOB_AOR + "'):");
     LOG.info("{}", userRepository.findBySipAor(BOB_AOR));
+  }
+
+  /** Update a User. */
+  public void updateUser() {
+
+    // ------------------------------------------------------------------------
+    // Create a User
+    // ------------------------------------------------------------------------
+    final User carol = new User();
+    carol.setFirstName(CAROL_FIRSTNAME);
+    carol.setLastName(CAROL_LASTNAME);
+    carol.setUsername(CAROL_USERNAME);
+    carol.setEmail(CAROL_EMAIL);
+    carol.setAccountEnabled(true);
+    carol.setSipAor(CAROL_AOR);
+
+    LOG.info("");
+    LOG.info("Created User for Carol: {}", userRepository.save(carol));
+
+    // ------------------------------------------------------------------------
+    // Update User's account to disable it
+    // ------------------------------------------------------------------------
+    carol.setAccountEnabled(false);
+    LOG.info("Updated User for Carol: {}", userRepository.save(carol));
+  }
+
+  /** Remove a User. */
+  public void removeUser() {
+
+    // ------------------------------------------------------------------------
+    // Create a User
+    // ------------------------------------------------------------------------
+    final User dave = new User();
+    dave.setFirstName(DAVE_FIRSTNAME);
+    dave.setLastName(DAVE_LASTNAME);
+    dave.setUsername(DAVE_USERNAME);
+    dave.setEmail(DAVE_EMAIL);
+    dave.setAccountEnabled(DAVE_ACCOUNT_ENABLED);
+    dave.setSipAor(DAVE_AOR);
+
+    LOG.info("");
+    LOG.info("Created User for Dave: {}", userRepository.save(dave));
+
+    // ------------------------------------------------------------------------
+    // Remove User
+    // ------------------------------------------------------------------------
+    userRepository.delete(dave);
+    LOG.info("Removed User for Dave");
   }
 }

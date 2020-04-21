@@ -1,5 +1,6 @@
 package com.gazbert.mongosample.repository;
 
+import static com.gazbert.mongosample.services.RegistrationService.DAVE_AOR;
 import static com.gazbert.mongosample.services.UserService.ALICE_ACCOUNT_ENABLED;
 import static com.gazbert.mongosample.services.UserService.ALICE_AOR;
 import static com.gazbert.mongosample.services.UserService.ALICE_EMAIL;
@@ -12,11 +13,15 @@ import static com.gazbert.mongosample.services.UserService.BOB_EMAIL;
 import static com.gazbert.mongosample.services.UserService.BOB_FIRSTNAME;
 import static com.gazbert.mongosample.services.UserService.BOB_LASTNAME;
 import static com.gazbert.mongosample.services.UserService.BOB_USERNAME;
+import static com.gazbert.mongosample.services.UserService.CAROL_AOR;
+import static com.gazbert.mongosample.services.UserService.CAROL_EMAIL;
+import static com.gazbert.mongosample.services.UserService.CAROL_FIRSTNAME;
+import static com.gazbert.mongosample.services.UserService.CAROL_LASTNAME;
+import static com.gazbert.mongosample.services.UserService.CAROL_USERNAME;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gazbert.mongosample.model.User;
 import java.util.List;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +47,7 @@ public class UserRepositoryTests {
   public void testUsersCreatedSuccessfully() {
 
     final List<User> allUsers = userRepository.findAll();
-    assertThat(allUsers.size()).isEqualTo(2);
+    assertThat(allUsers.size()).isEqualTo(3); // Alice, Bob, and Carol
 
     final User alice = userRepository.findBySipAor(ALICE_AOR);
 
@@ -63,13 +68,21 @@ public class UserRepositoryTests {
     assertThat(bob.getSipAor()).isEqualTo(BOB_AOR);
   }
 
-  @Ignore("Not implemented yet")
   @Test
   public void testUserUpdatedSuccessfully() {
+    final User carol = userRepository.findBySipAor(CAROL_AOR);
+
+    assertThat(carol.getFirstName()).isEqualTo(CAROL_FIRSTNAME);
+    assertThat(carol.getLastName()).isEqualTo(CAROL_LASTNAME);
+    assertThat(carol.getUsername()).isEqualTo(CAROL_USERNAME);
+    assertThat(carol.getEmail()).isEqualTo(CAROL_EMAIL);
+    assertThat(carol.isAccountEnabled()).isEqualTo(false); // it's been disabled
+    assertThat(carol.getSipAor()).isEqualTo(CAROL_AOR);
   }
 
-  @Ignore("Not implemented yet")
   @Test
   public void testUserRemovedSuccessfully() {
+    final User dave = userRepository.findBySipAor(DAVE_AOR);
+    assertThat(dave).isNull();
   }
 }

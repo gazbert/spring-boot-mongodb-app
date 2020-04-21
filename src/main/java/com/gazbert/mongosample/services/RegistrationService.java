@@ -42,8 +42,8 @@ public class RegistrationService {
   private static final String CAROL_CACHE_ID = "cache-789";
 
   public static final String DAVE_AOR = "sip:dave@seti-aplha-5.net";
-  public static final String DAVE_CONTACT_ADDRESS = "sip:dave@192.168.33.888";
-  public static final int DAVE_CONTACT_ADDRESS_EXPIRES = 360;
+  private static final String DAVE_CONTACT_ADDRESS = "sip:dave@192.168.33.888";
+  private static final int DAVE_CONTACT_ADDRESS_EXPIRES = 360;
   private static final String DAVE_CACHE_ID = "cache-901";
 
   private RegistrationRepository registrationRepository;
@@ -71,7 +71,7 @@ public class RegistrationService {
     final ContactAddress aliceContactAddress = new ContactAddress();
     aliceContactAddress.setAddress(ALICE_CONTACT_ADDRESS);
     aliceContactAddress.setExpires(ALICE_CONTACT_ADDRESS_EXPIRES);
-    aliceRegistration.setAddressOfRecord(ALICE_AOR);
+    aliceRegistration.setAor(ALICE_AOR);
     aliceRegistration.addContactAddress(aliceContactAddress);
     aliceRegistration.setCurrentCacheId(ALICE_CACHE_ID);
 
@@ -85,7 +85,7 @@ public class RegistrationService {
     final ContactAddress bobContactAddress = new ContactAddress();
     bobContactAddress.setAddress(BOB_CONTACT_ADDRESS);
     bobContactAddress.setExpires(BOB_CONTACT_ADDRESS_EXPIRES);
-    bobRegistration.setAddressOfRecord(BOB_AOR);
+    bobRegistration.setAor(BOB_AOR);
     bobRegistration.addContactAddress(bobContactAddress);
     bobRegistration.setCurrentCacheId(BOB_CACHE_ID);
 
@@ -108,12 +108,12 @@ public class RegistrationService {
     // Fetch individual Registrations
     // ------------------------------------------------------------------------
     LOG.info("");
-    LOG.info("Registration found with findByAddressOfRecord('" + ALICE_AOR + "'):");
-    LOG.info("{}", registrationRepository.findByAddressOfRecord(ALICE_AOR));
+    LOG.info("Registration found with findByAor('" + ALICE_AOR + "'):");
+    LOG.info("{}", registrationRepository.findByAor(ALICE_AOR));
 
     LOG.info("");
-    LOG.info("Registration found with findByAddressOfRecord('" + BOB_AOR + "'):");
-    LOG.info("{}", registrationRepository.findByAddressOfRecord(BOB_AOR));
+    LOG.info("Registration found with findByAor('" + BOB_AOR + "'):");
+    LOG.info("{}", registrationRepository.findByAor(BOB_AOR));
 
     LOG.info("");
     LOG.info("Registration found with findByContactAddress('" + ALICE_CONTACT_ADDRESS + "'):");
@@ -130,7 +130,7 @@ public class RegistrationService {
     final ContactAddress carolContactAddress1 = new ContactAddress();
     carolContactAddress1.setAddress(CAROL_CONTACT_ADDRESS_1);
     carolContactAddress1.setExpires(CAROL_CONTACT_ADDRESS_EXPIRES_1);
-    carolRegistration.setAddressOfRecord(CAROL_AOR);
+    carolRegistration.setAor(CAROL_AOR);
     carolRegistration.addContactAddress(carolContactAddress1);
     carolRegistration.setCurrentCacheId(CAROL_CACHE_ID);
 
@@ -148,9 +148,7 @@ public class RegistrationService {
     LOG.info("Updated Registration for Carol: {}", registrationRepository.save(carolRegistration));
   }
 
-  /**
-   * Remove a Registration.
-   */
+  /** Remove a Registration. */
   public void removeRegistration() {
 
     // ------------------------------------------------------------------------
@@ -160,7 +158,7 @@ public class RegistrationService {
     final ContactAddress daveContactAddress = new ContactAddress();
     daveContactAddress.setAddress(DAVE_CONTACT_ADDRESS);
     daveContactAddress.setExpires(DAVE_CONTACT_ADDRESS_EXPIRES);
-    daveRegistration.setAddressOfRecord(DAVE_AOR);
+    daveRegistration.setAor(DAVE_AOR);
     daveRegistration.addContactAddress(daveContactAddress);
     daveRegistration.setCurrentCacheId(DAVE_CACHE_ID);
 

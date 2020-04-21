@@ -14,10 +14,10 @@ public interface RegistrationRepository
     extends CustomRegistrationRepository, MongoRepository<Registration, String> {
 
   /**
-   * Looks up a Registration for a given AOR.
+   * Looks up a Registration for a given Address of Record (AOR).
    *
-   * @param addressOfRecord the AOR to search for.
+   * @param aor the AOR to search for.
    * @return the Registration if found, null otherwise.
    */
-  Registration findByAddressOfRecord(String addressOfRecord);
+  Registration findByAor(String aor);
 }

@@ -43,8 +43,8 @@ public class RegistrationRepositoryTests {
     final List<Registration> allRegistrations = registrationRepository.findAll();
     assertThat(allRegistrations.size()).isEqualTo(3); // Alice, Bob, and Carol... but no Dave.
 
-    final Registration aliceRegistration = registrationRepository.findByAddressOfRecord(ALICE_AOR);
-    assertThat(aliceRegistration.getAddressOfRecord()).isEqualTo(ALICE_AOR);
+    final Registration aliceRegistration = registrationRepository.findByAor(ALICE_AOR);
+    assertThat(aliceRegistration.getAor()).isEqualTo(ALICE_AOR);
     // Null because it's transient
     assertThat(aliceRegistration.getCurrentCacheId()).isEqualTo(null);
     assertThat(aliceRegistration.getContactAddresses().size()).isEqualTo(1);
@@ -53,8 +53,8 @@ public class RegistrationRepositoryTests {
     assertThat(aliceRegistration.getContactAddresses().get(0).getExpires())
         .isEqualTo(ALICE_CONTACT_ADDRESS_EXPIRES);
 
-    final Registration bobRegistration = registrationRepository.findByAddressOfRecord(BOB_AOR);
-    assertThat(bobRegistration.getAddressOfRecord()).isEqualTo(BOB_AOR);
+    final Registration bobRegistration = registrationRepository.findByAor(BOB_AOR);
+    assertThat(bobRegistration.getAor()).isEqualTo(BOB_AOR);
     // Null because it's transient
     assertThat(bobRegistration.getCurrentCacheId()).isEqualTo(null);
     assertThat(bobRegistration.getContactAddresses().size()).isEqualTo(1);
@@ -63,14 +63,14 @@ public class RegistrationRepositoryTests {
     assertThat(bobRegistration.getContactAddresses().get(0).getExpires())
         .isEqualTo(BOB_CONTACT_ADDRESS_EXPIRES);
 
-    final Registration carolRegistration = registrationRepository.findByAddressOfRecord(CAROL_AOR);
-    assertThat(carolRegistration.getAddressOfRecord()).isEqualTo(CAROL_AOR);
+    final Registration carolRegistration = registrationRepository.findByAor(CAROL_AOR);
+    assertThat(carolRegistration.getAor()).isEqualTo(CAROL_AOR);
   }
 
   @Test
   public void testRegistrationUpdatedSuccessfully() {
-    final Registration carolRegistration = registrationRepository.findByAddressOfRecord(CAROL_AOR);
-    assertThat(carolRegistration.getAddressOfRecord()).isEqualTo(CAROL_AOR);
+    final Registration carolRegistration = registrationRepository.findByAor(CAROL_AOR);
+    assertThat(carolRegistration.getAor()).isEqualTo(CAROL_AOR);
 
     // Null because it's transient
     assertThat(carolRegistration.getCurrentCacheId()).isEqualTo(null);
@@ -90,7 +90,7 @@ public class RegistrationRepositoryTests {
 
   @Test
   public void testRegistrationRemovedSuccessfully() {
-    final Registration daveRegistration = registrationRepository.findByAddressOfRecord(DAVE_AOR);
+    final Registration daveRegistration = registrationRepository.findByAor(DAVE_AOR);
     assertThat(daveRegistration).isNull();
   }
 }

@@ -19,12 +19,13 @@ public class Registration {
   @Id private String id;
 
   /** Indexed this attribute as it will be looked up lots. */
-  @Indexed private String addressOfRecord;
+  @Indexed private String aor;
 
   /** Shows how not to store some data in the database. */
   @Transient private String currentCacheId;
 
   private List<ContactAddress> contactAddresses;
+
 
   public Registration() {
     contactAddresses = new ArrayList<>();
@@ -38,12 +39,12 @@ public class Registration {
     this.id = id;
   }
 
-  public String getAddressOfRecord() {
-    return addressOfRecord;
+  public String getAor() {
+    return aor;
   }
 
-  public void setAddressOfRecord(String addressOfRecord) {
-    this.addressOfRecord = addressOfRecord;
+  public void setAor(String aor) {
+    this.aor = aor;
   }
 
   public List<ContactAddress> getContactAddresses() {
@@ -70,7 +71,7 @@ public class Registration {
   public String toString() {
     return MoreObjects.toStringHelper(this)
         .add("id", id)
-        .add("addressOfRecord", addressOfRecord)
+        .add("aor", aor)
         .add("currentCacheId", currentCacheId)
         .add("contactAddresses", contactAddresses)
         .toString();
