@@ -42,7 +42,7 @@ public class UserService {
   public static final String CAROL_LASTNAME = "Singer";
   public static final String CAROL_EMAIL = "carol.singer@christmas.net";
 
-  private static final String DAVE_AOR = "sip:dave@seti-aplha-5.net";
+  public static final String DAVE_AOR = "sip:dave@seti-aplha-5.net";
   private static final String DAVE_USERNAME = "dave012";
   private static final String DAVE_FIRSTNAME = "Dave";
   private static final String DAVE_LASTNAME = "Badger";

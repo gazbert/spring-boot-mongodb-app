@@ -1,6 +1,5 @@
 package com.gazbert.mongosample.repository;
 
-import static com.gazbert.mongosample.services.RegistrationService.DAVE_AOR;
 import static com.gazbert.mongosample.services.UserService.ALICE_ACCOUNT_ENABLED;
 import static com.gazbert.mongosample.services.UserService.ALICE_AOR;
 import static com.gazbert.mongosample.services.UserService.ALICE_EMAIL;
@@ -18,6 +17,7 @@ import static com.gazbert.mongosample.services.UserService.CAROL_EMAIL;
 import static com.gazbert.mongosample.services.UserService.CAROL_FIRSTNAME;
 import static com.gazbert.mongosample.services.UserService.CAROL_LASTNAME;
 import static com.gazbert.mongosample.services.UserService.CAROL_USERNAME;
+import static com.gazbert.mongosample.services.UserService.DAVE_AOR;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gazbert.mongosample.model.User;
