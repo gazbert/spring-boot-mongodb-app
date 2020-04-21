@@ -72,13 +72,13 @@ public class RegistrationIT {
    *
    * <p>Expect Dave's registration to be removed.
    */
-    @Test
-    public void testRegistrationRemoval() {
-      LOG.info("Checking if Dave's registration has been removed...");
-      final Boolean registrationRemoved =
-          await().atMost(10, TimeUnit.SECONDS).until(hasRegistrationBeenRemoved(), is(true));
-      assertTrue(registrationRemoved);
-    }
+  @Test
+  public void testRegistrationRemoval() {
+    LOG.info("Checking if Dave's registration has been removed...");
+    final Boolean registrationRemoved =
+        await().atMost(10, TimeUnit.SECONDS).until(hasRegistrationBeenRemoved(), is(true));
+    assertTrue(registrationRemoved);
+  }
 
   // --------------------------------------------------------------------------
   // Util methods
