@@ -286,7 +286,7 @@
               <goal>check</goal>
             </goals>
             <configuration>
-              <skip>${skip.unit.tests}</skip>
+              <skip>${skip.integration.tests}</skip>
               <rules>
                 <rule>
                   <element>CLASS</element>
