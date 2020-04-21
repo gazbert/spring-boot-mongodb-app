@@ -89,6 +89,20 @@ fail to due to port clashes.
 The unit test report locations are:
 * Gradle - `build/reports/tests/test/index.html`
 * Maven - `./target/surefire-reports`
+
+The integration tests require a running instance of MongoDB -
+[Testcontainers](https://www.testcontainers.org/) is used to achieve this. Don't forget to stop any
+other instances of MongoDB you have running before running the tests.
+
+The IT tests are located [here](./src/integration-test/java/com/gazbert/mongosample/it).
+ 
+To run the IT tests:
+* Gradle - `./gradlew integrationTests`
+* Maven  `./mvnw clean install -Pint`
+
+The IT report locations are:
+* Gradle - `./build/reports/tests/integrationTests/index.html`
+* Maven - `./target/failsafe-reports`
  
 ## Configuration
 The configuration is held in the [./config/application.properties](./config/application.properties) 

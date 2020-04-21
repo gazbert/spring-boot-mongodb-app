@@ -43,7 +43,9 @@ ext.libraries = [
             exclude module: "spring-boot-starter-logging"
             force = true
         },
-        flapdoodle_embed_mongo          : dependencies.create("de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.2.0")
+        flapdoodle_embed_mongo          : dependencies.create("de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.2.0"),
+        testcontainers                  : dependencies.create('org.testcontainers:testcontainers:1.13.0'),
+        awaitility                      : dependencies.create('org.awaitility:awaitility:4.0.2')
 ]
 
 /*
@@ -57,6 +59,39 @@ dependencies {
     testImplementation libraries.junit
     testImplementation libraries.spring_boot_starter_test
     testImplementation libraries.flapdoodle_embed_mongo
+    testImplementation libraries.testcontainers
+    testImplementation libraries.awaitility
+}
+
+/*
+ * Add source sets for the IT tests.
+ */
+sourceSets {
+    integrationTest {
+        compileClasspath += main.output + test.output
+        runtimeClasspath += main.output + test.output
+
+        java.srcDir 'src/integration-test/java'
+        resources.srcDir 'src/integration-test/resources'
+    }
+}
+
+configurations {
+    integrationTestCompile.extendsFrom testImplementation
+    integrationTestRuntime.extendsFrom testRuntime
+}
+
+/*
+ * Run the Testcontainers IT tests.
+ */
+task integrationTests(type: Test) {
+
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
 
 /*
