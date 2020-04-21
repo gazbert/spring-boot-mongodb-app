@@ -23,7 +23,7 @@ docker run -d -p 27017-27019:27017-27019 --name my-mongodb mongo:latest
 
 Once it's up and running, you can attach to it to run MongoDB commands: 
 ```bash
-docker exec -it mongodb bash
+docker exec -it my-mongodb bash
 ```
 
 Launch the [Mongo Shell](https://docs.mongodb.com/manual/reference/mongo-shell/) client:
